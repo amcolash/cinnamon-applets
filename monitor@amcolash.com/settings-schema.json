@@ -2,17 +2,11 @@
   "update-interval": {
     "type": "spinbutton",
     "default": 5000,
-    "min": 2000,
+    "min": 500,
     "max": 30000,
     "step": 100,
     "units": "ms",
     "description": "Update interval"
-  },
-  "icon-name": {
-    "type": "iconfilechooser",
-    "default": "help",
-    "description": "The icon to use in the panel",
-    "tooltip": "Select an icon file, or you can type an icon name into the entry box"
   },
   "run-command": {
     "type": "entry",
