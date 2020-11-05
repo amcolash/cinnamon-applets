@@ -1,0 +1,7 @@
+{
+  "uuid": "monitor@amcolash.com",
+  "name": "Monitor",
+  "description": "A generic monitor, inspired the the XFCE plugin \"Genmon\"",
+  "icon": "preferences-desktop",
+  "max-instances": "-1"
+}
