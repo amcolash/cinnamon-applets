@@ -29,22 +29,23 @@ class CinnamonSettingsExampleApplet extends Applet.TextIconApplet {
       return;
     }
 
-    const data = this._run_cmd(this.run_command);
+    const data = this._run_cmd(this.run_command).trim();
 
     const img = data.match(/<img>([.\s\S]*)<\/img>/);
     let image_file = img && img[1] ? img[1] : '';
 
     const icon_file = Gio.File.new_for_path(image_file);
-    if (icon_file.query_exists(null)) this.set_applet_icon_path(image_file);
+    if (icon_file.query_exists(null) && image_file.length > 0) this.set_applet_icon_path(image_file);
+    else this.hide_applet_icon();
 
     const txt = data.match(/<txt>([.\s\S]*)<\/txt>/);
     const label = txt && txt[1] ? txt[1] : null;
-    if (label) this.set_applet_label(label);
+    if (label) this.set_applet_label(label.trim());
     else this.set_applet_label(data);
 
     const tool = data.match(/<tool>([.\s\S]*)<\/tool>/);
     const tooltip = tool && tool[1] ? tool[1] : null;
-    if (tooltip) this.set_applet_tooltip(tooltip);
+    if (tooltip) this.set_applet_tooltip(tooltip.trim());
 
     if (this.timeoutId) Mainloop.source_remove(this.timeoutId);
     this.timeoutId = Mainloop.timeout_add(this.update_interval, Lang.bind(this, this.update_data));
